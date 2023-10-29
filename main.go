@@ -67,7 +67,6 @@ func fetchHandler(ctx *Context) http.HandlerFunc {
 
 func storeHandler(ctx *Context) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		slog.Info("parsing", slog.Any("form", r.Form))
 		if err := r.ParseForm(); err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
