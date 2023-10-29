@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Plugin Demo</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	<body>
+
+	<form hx-post="/plugins">
+		<textarea rows="15" cols="100" name="code">
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+var counter int
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	counter += 1
+	fmt.Fprintf(w, "Hello, World from Plugin 1<br/>counter: %d", counter)
+}
+		</textarea>
+		<br/>
+		<button type="submit">submit</button>
+	</form>
+	<hr/>
+	<div hx-get="/plugins" hx-trigger="every 1s"></div>
+	<script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
+	</body>
+</html>
